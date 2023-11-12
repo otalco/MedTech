@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 @Data
 public class PacienteUpdateForm {
+
     @NotBlank(message = "Nome não pode estar em branco")
     private String nome;
     @NotBlank(message = "Nome da mãe não pode estar em branco")
@@ -21,4 +22,5 @@ public class PacienteUpdateForm {
     private String nomePai;
     private String endereco;
     private String observacoes;
+
 }

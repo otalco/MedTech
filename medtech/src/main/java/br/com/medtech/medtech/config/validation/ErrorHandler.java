@@ -21,7 +21,7 @@ public class ErrorHandler {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErrorFormDto> handle(MethodArgumentNotValidException exception){
+    public List<ErrorFormDto> handle(MethodArgumentNotValidException exception) {
 
         List<ErrorFormDto> dto = new ArrayList<>();
 

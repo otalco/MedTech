@@ -7,40 +7,42 @@ import br.com.medtech.medtech.service.PacienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/paciente")
+@RequestMapping("/pacientes")
 public class PacienteController {
 
     @Autowired
     private PacienteService pacienteService;
 
     @GetMapping
-    public List<PacienteDto> list (){
+    public List<PacienteDto> list() {
         return pacienteService.findAllPacientes();
     }
 
     @GetMapping("/{id}")
-    public PacienteDto findById(@PathVariable("id") Long id){
+    public PacienteDto findById(@PathVariable("id") Long id) {
         return pacienteService.findPacienteById(id);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public PacienteDto register (@RequestBody @Valid PacienteForm pacienteForm){
+    public PacienteDto register(@RequestBody @Valid PacienteForm pacienteForm) {
         return pacienteService.createPaciente(pacienteForm);
     }
 
     @PutMapping("/{id}")
-    public PacienteDto updateById(@RequestBody PacienteUpdateForm form , @PathVariable("id") Long id){
-        return pacienteService.updateById(form,id);
+    public PacienteDto updateById(@RequestBody PacienteUpdateForm form, @PathVariable("id") Long id) {
+        return new ResponseEntity<PacienteDto>(HttpStatus.OK).getBody();
+        // return pacienteService.updateById(form,id);
     }
 
     @DeleteMapping("/{id}")
-    public PacienteDto deleteById(@PathVariable("id") Long id){
+    public PacienteDto deleteById(@PathVariable("id") Long id) {
         return pacienteService.deleteById(id);
     }
 

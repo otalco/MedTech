@@ -1,12 +1,9 @@
 package br.com.medtech.medtech.model.form;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
-
-import java.time.LocalDate;
 
 @Data
 public class PacienteForm {
@@ -25,4 +22,5 @@ public class PacienteForm {
     private String nomePai;
     private String endereco;
     private String observacoes;
+
 }

@@ -18,22 +18,23 @@ public class PacienteService {
     @Autowired
     PacienteRepository pacienteRepository;
 
-    public PacienteDto createPaciente(PacienteForm form){
+    public PacienteDto createPaciente(PacienteForm form) {
         Paciente paciente = convertToBusiness(form);
         paciente = pacienteRepository.save(paciente);
         return convertToDto(paciente);
     }
 
-    public List<PacienteDto> findAllPacientes(){
+    public List<PacienteDto> findAllPacientes() {
         List<Paciente> all = pacienteRepository.findAll();
         return convertListToDto(all);
     }
 
-    public PacienteDto findPacienteById(Long id){
+    public PacienteDto findPacienteById(Long id) {
         Optional<Paciente> optional = pacienteRepository.findById(id);
         return optional.map(this::convertToDto).orElse(null);
     }
-    private Paciente convertToBusiness(PacienteForm form){
+
+    private Paciente convertToBusiness(PacienteForm form) {
         Paciente paciente = new Paciente();
         paciente.setNome(form.getNome());
         paciente.setNomeMae(form.getNomeMae());
@@ -65,23 +66,26 @@ public class PacienteService {
         return pacientes.stream().map(PacienteDto::new).collect(Collectors.toList());
     }
 
-    public PacienteDto updateById(PacienteUpdateForm form, Long id){
+    public PacienteDto updateById(PacienteUpdateForm form, Long id) {
         Optional<Paciente> optional = pacienteRepository.findById(id);
-        if(optional.isPresent()){
+        if (optional.isPresent()) {
             Paciente obj = optional.get();
-            if (form.getNome() != null){
+            if (form.getNome() != null) {
                 obj.setNome(form.getNome());
-            }if(form.getCpf() != null){
+            }
+            if (form.getCpf() != null) {
                 obj.setCpf(form.getCpf());
             }
             pacienteRepository.save(obj);
             return convertToDto(obj);
-        } return null;
+        }
+        return null;
     }
 
-    public PacienteDto deleteById(Long id){
-        if(pacienteRepository.existsById(id)){
+    public PacienteDto deleteById(Long id) {
+        if (pacienteRepository.existsById(id)) {
             pacienteRepository.deleteById(id);
-        } return null;
+        }
+        return null;
     }
 }

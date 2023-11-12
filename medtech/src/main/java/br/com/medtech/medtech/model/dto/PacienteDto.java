@@ -1,13 +1,11 @@
 package br.com.medtech.medtech.model.dto;
 
 import br.com.medtech.medtech.model.entities.Paciente;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.time.LocalDate;
 
 @Data
-public class PacienteDto{
+public class PacienteDto {
 
     private Long id;
     private String nome;
@@ -20,9 +18,10 @@ public class PacienteDto{
     private String endereco;
     private String observacoes;
 
-    public PacienteDto(){}
+    public PacienteDto() {
+    }
 
-    public PacienteDto(Paciente paciente){
+    public PacienteDto(Paciente paciente) {
         this.id = paciente.getId();
         this.nome = paciente.getNome();
         this.cartaoSus = paciente.getCartaoSus();
